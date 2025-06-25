@@ -1,4 +1,4 @@
-//write your code here
+/* Código antiguo
 const options = ["rock", "paper", "scissors", "lizard", "spock"]
 
 const getRandomOption = () => {
@@ -22,6 +22,46 @@ const checkUserOption = (userOption) => {
     }
 }
 
+checkUserOption("scissors")
+*/
+
+
+// Código mejorado
+const options = ["rock", "paper", "scissors", "lizard", "spock"]
+
+const winningCombinations = {
+    rock: ["scissors", "lizard"],
+    paper: ["rock", "spock"],
+    scissors: ["paper", "lizard"],
+    lizard: ["paper", "spock"],
+    spock: ["scissors", "rock"]
+};
+
+const getRandomOption = () => {
+    const index = Math.floor(Math.random() * options.length)
+
+    return options[index]
+}
+
+const checkUserOption = (userOption) => {
+    const computerOption = getRandomOption()
+
+    console.log(`User chose: ${userOption}`);
+    console.log(`Computer chose: ${computerOption}`);
+
+    if (userOption === computerOption) {
+        console.log("It's a draw! 🤝");
+    } else if (winningCombinations[userOption].includes(computerOption)) {
+        console.log("You win! 🎉");
+    } else {
+        console.log("You lose 😢");
+    }
+}
+
+const userOption = prompt("Choose one option: rock, paper, scissors, lizard or spock.").toLowerCase();
+
+checkUserOption(userOption)
+
 /*
 - **Rock** aplasta a **Scissors** y a **Lizard**.  
 - **Paper** cubre a **Rock** y desautoriza a **Spock**.  
@@ -31,5 +71,3 @@ const checkUserOption = (userOption) => {
 
 Si ambas opciones son iguales, es un empate.
 */
-
-checkUserOption("scissors")
